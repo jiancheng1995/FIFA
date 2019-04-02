@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- {% load static %} -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{% static 'images/fifa-ball.jpg' %}">
+    <title>{% block title %}FIFA soccer{% endblock title %}</title>
+        <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-inverse ">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+                <a class="navbar-brand" href="{% url 'home' %}"><span><img src="{% static 'images/FIFA.png'%}">
+                 FIFA</span></a>
+                 </button>
+                <a class="navbar-brand" href="{% url 'home' %}"><span><img src="{% static 'images/FIFA.png'%}}">
+                 FIFA soccer</span></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                {%  if user.is_authenticated %}
+                    {% if user.username != 'soccer' %}
+                        <li><a href="{% url 'Ranking' %}">+ Ranking</a></li>
+                    {% endif %}
+                {% endif %}
+                  <ul class="nav navbar-nav navbar-right">
+                {%  if user.is_authenticated %}
+                        <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <span class="glyphicon glyphicon-user"></span> {{ account}}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountMenu">
+                            <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'sign out' %}">Sign out</a>
+                        </div>
+                {% else %}
+                  <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                {% endif %}
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+    </header>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+      <footer class="footer">
+          <div class="container">
+              <span class=​"text-muted">Copyright &copy; 2019 jiancheng All rights reserved. Content used with permission of authors.​</span>​
+          </div>
+      </footer>
+
+        <!-- Optional JavaScript -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
+
+
+</body>
+</html>
